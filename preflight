@@ -9,10 +9,12 @@ for script in os.listdir(preflight_dir):
     mode = st.st_mode
     if not mode & stat.S_IWOTH:
         try:
-            subprocess.call([os.path.join(preflight_dir, script),
+            subprocess.check_call([os.path.join(preflight_dir, script),
                             sys.argv[1]],
                             stdin=None)
         except OSError:
             print "Something went wrong!"
+        except CalledProcessError as e: 
+            sys.exit( e.returncode )
     else:
         print script + " is not executable or has bad permissions"
