@@ -3,7 +3,7 @@
 #    preflight
 #        Retrieves queries to run in osquery
 #
-
+from __future__ import print
 
 import os
 import json
@@ -46,7 +46,8 @@ def get_prefs():
 
     for key, val in required_prefs.items():
         if not val:
-            sys.exit('Required Sal preference "{}" is not set.'.format(key))
+            print( 'Required Sal preference "{}" is not set.'.format(key), file=sys.stderr)
+            sys.exit(0)
     return required_prefs
 
 def get_checksum():
