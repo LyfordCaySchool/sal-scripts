@@ -3,7 +3,7 @@
 #    preflight
 #        Retrieves queries to run in osquery
 #
-from __future__ import print
+from __future__ import print_function
 
 import os
 import json
